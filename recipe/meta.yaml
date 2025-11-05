@@ -33,6 +33,7 @@ requirements:
     - libxslt {{ libxslt }}
     - openssl {{ openssl }}
   run:
+    # Needed to resolve libltdl.so.7 in the dynamic section for libxmlsec1.so
     - {{ pin_compatible('libtool') }}
 
 test:
