@@ -21,6 +21,7 @@ requirements:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - make
+    - libtool
   host:
     # GCRYPT_MIN_VERSION=1.4.0
     - libgcrypt 1.11.2
