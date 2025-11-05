@@ -32,6 +32,8 @@ requirements:
     # LIBXSLT_MIN_VERSION=1.0.20
     - libxslt {{ libxslt }}
     - openssl {{ openssl }}
+  run:
+    - {{ pin_compatible('libtool') }}
 
 test:
   requires:
