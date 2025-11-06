@@ -23,13 +23,13 @@ requirements:
     - make
     - libtool
   host:
-    # GCRYPT_MIN_VERSION=1.4.0
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L1567 -> GCRYPT_MIN_VERSION=1.4.0
     - libgcrypt 1.11.2
     - libgpg-error 1.51
     - libtool 2.4.7
-    # LIBXML2_MIN_VERSION=2.8.0
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L331 -> LIBXML_MIN_VERSION=2.8.0
     - libxml2 {{ libxml2 }}
-    # LIBXSLT_MIN_VERSION=1.0.20
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L509 -> LIBXSLT_MIN_VERSION=1.0.20
     - libxslt {{ libxslt }}
     - openssl {{ openssl }}
   run:
