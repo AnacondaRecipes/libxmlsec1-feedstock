@@ -1,4 +1,5 @@
-{% set version = "1.3.5" %}
+{% set version = "1.3.8" %}
+{% set name = "libxmlsec1" %}
 
 package:
   name: libxmlsec1
@@ -6,31 +7,33 @@ package:
 
 source:
   url: https://github.com/lsh123/xmlsec/releases/download/{{ version }}/xmlsec1-{{ version }}.tar.gz
-  sha256: 2ffd4ad1f860ec93e47a680310ab2bc94968bd07566e71976bd96133d9504917
+  sha256: d0180916ae71be28415a6fa919a0684433ec9ec3ba1cc0866910b02e5e13f5bd
+
 build:
   number: 0
-  # libgpg-error and libgcrypt aren't available on s390x
-  skip: true  # [win or (linux and s390x)]
   run_exports:
     # compatibility is not tracked at abi-laboratory, assume same as libxml2
     - {{ pin_subpackage('libxmlsec1', max_pin='x.x') }}
+  skip: true  # [win]
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - make
     - libtool
   host:
-    - libgcrypt 1.9.3
-    - libgpg-error 1.42  # [linux]
-    - libtool 2.4.6
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L1567 -> GCRYPT_MIN_VERSION=1.4.0
+    - libgcrypt 1.11.2
+    - libgpg-error 1.51
+    - libtool 2.4.7
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L331 -> LIBXML_MIN_VERSION=2.8.0
     - libxml2 {{ libxml2 }}
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L509 -> LIBXSLT_MIN_VERSION=1.0.20
     - libxslt {{ libxslt }}
     - openssl {{ openssl }}
   run:
-    # libltdl is linked, which the libtool package provides.
-    # This is needed to enable dynamic loading support for xmlsec-crypto
-    # libraries (--enable-crypto-dl option).
+    # Needed to resolve libltdl.so.7 in the dynamic section for libxmlsec1.so
     - {{ pin_compatible('libtool') }}
 
 test:
@@ -41,7 +44,7 @@ test:
     - xmlsec1 --version | rg {{ version }}
 
 about:
-  home: https://www.aleksey.com/xmlsec/
+  home: https://www.aleksey.com/xmlsec
   license: MIT
   license_family: MIT
   license_file: Copyright
