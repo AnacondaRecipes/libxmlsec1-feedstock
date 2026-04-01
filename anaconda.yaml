@@ -1,4 +1,5 @@
 anaconda_config_version: 1
 upstream_sources:
-  - github:
-      identifier: lsh123/xmlsec
+  - webpage:
+      url: https://www.aleksey.com/xmlsec/download/xmlsec1-{}.tar.gz
+      regex: xmlsec1-(.*)\.tar\.gz
