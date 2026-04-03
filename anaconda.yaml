@@ -1,5 +1,5 @@
 anaconda_config_version: 1
 upstream_sources:
   - webpage:
-      url: https://www.aleksey.com/xmlsec/download/xmlsec1-{}.tar.gz
+      url: https://www.aleksey.com/xmlsec/download/
       regex: xmlsec1-([\d.]+)\.tar\.gz
