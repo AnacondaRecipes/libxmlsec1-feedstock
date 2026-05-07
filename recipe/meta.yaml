@@ -1,4 +1,4 @@
-{% set version = "1.3.8" %}
+{% set version = "1.3.11" %}
 {% set name = "libxmlsec1" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/lsh123/xmlsec/releases/download/{{ version }}/xmlsec1-{{ version }}.tar.gz
-  sha256: d0180916ae71be28415a6fa919a0684433ec9ec3ba1cc0866910b02e5e13f5bd
+  sha256: 53675e98fa83b48201d24f7bfbcaeaa1b51496b8b19ff969785856bdeb196af3
 
 build:
   number: 0
@@ -27,9 +27,9 @@ requirements:
     - libgcrypt 1.11.2
     - libgpg-error 1.51
     - libtool 2.4.7
-    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L331 -> LIBXML_MIN_VERSION=2.8.0
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L331 -> LIBXML_MIN_VERSION=2.9.13
     - libxml2 {{ libxml2 }}
-    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L509 -> LIBXSLT_MIN_VERSION=1.0.20
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L509 -> LIBXSLT_MIN_VERSION=1.1.35
     - libxslt {{ libxslt }}
     - openssl {{ openssl }}
   run:
