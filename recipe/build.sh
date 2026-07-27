@@ -15,6 +15,9 @@ export LIBXML_LIBS="-lxml2"
     --with-libxml="${PREFIX}" \
     --with-gcrypt="${PREFIX}" \
     --with-xslt="${PREFIX}"
+
+# unit_tests/list_unit_tests.c:826:2: error: no newline at end of file [-Werror,-Wnewline-eof]
+printf '\n' >> "$SRC_DIR/apps/unit_tests/list_unit_tests.c"
 make -j${CPU_COUNT} ${VERBOSE_AT}
 make check
 make install

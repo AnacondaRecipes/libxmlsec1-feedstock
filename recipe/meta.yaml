@@ -1,13 +1,13 @@
-{% set version = "1.3.11" %}
-{% set name = "libxmlsec1" %}
+{% set version = "1.3.12" %}
+{% set name = "xmlsec" %}
 
 package:
-  name: libxmlsec1
+  name: lib{{ name }}1
   version: {{ version }}
 
 source:
-  url: https://github.com/lsh123/xmlsec/releases/download/{{ version }}/xmlsec1-{{ version }}.tar.gz
-  sha256: 53675e98fa83b48201d24f7bfbcaeaa1b51496b8b19ff969785856bdeb196af3
+  url: https://github.com/lsh123/{{ name }}/releases/download/{{ version }}/{{ name }}1-{{ version }}.tar.gz
+  sha256: 24045199af12d93fe5fdbbbf7e386e823e4842071e9432e2b90ac108b889a923
 
 build:
   number: 0
@@ -20,21 +20,23 @@ requirements:
   build:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
+    - pkg-config
     - make
     - libtool
   host:
-    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L1567 -> GCRYPT_MIN_VERSION=1.4.0
-    - libgcrypt 1.11.2
-    - libgpg-error 1.51
-    - libtool 2.4.7
-    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L331 -> LIBXML_MIN_VERSION=2.9.13
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_12/configure.ac#L1563 -> GCRYPT_MIN_VERSION=1.4.0
+    - libgcrypt {{ libgcrypt }}
+    - libgpg-error {{ libgpg_error }}
+    - libtool 2.6.0
+    - libltdl {{ libltdl }}
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_12/configure.ac#L327 -> LIBXML_MIN_VERSION=2.9.13
     - libxml2 {{ libxml2 }}
-    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_8/configure.ac#L509 -> LIBXSLT_MIN_VERSION=1.1.35
+    # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_12/configure.ac#L505 -> LIBXSLT_MIN_VERSION=1.1.35
     - libxslt {{ libxslt }}
     - openssl {{ openssl }}
   run:
     # Needed to resolve libltdl.so.7 in the dynamic section for libxmlsec1.so
-    - {{ pin_compatible('libtool') }}
+    - {{ pin_compatible('libltdl') }}
 
 test:
   requires:
