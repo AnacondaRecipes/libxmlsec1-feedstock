@@ -25,9 +25,9 @@ requirements:
     - libtool
   host:
     # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_12/configure.ac#L1563 -> GCRYPT_MIN_VERSION=1.4.0
-    - libgcrypt 1.11.2
-    - libgpg-error 1.51
-    - libtool 2.4.7
+    - libgcrypt {{ libgcrypt }}
+    - libgpg-error {{ libgpg_error }}
+    - libtool 2.6.0
     # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_12/configure.ac#L327 -> LIBXML_MIN_VERSION=2.9.13
     - libxml2 {{ libxml2 }}
     # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_12/configure.ac#L505 -> LIBXSLT_MIN_VERSION=1.1.35
