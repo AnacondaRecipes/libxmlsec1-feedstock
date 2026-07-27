@@ -28,6 +28,7 @@ requirements:
     - libgcrypt {{ libgcrypt }}
     - libgpg-error {{ libgpg_error }}
     - libtool 2.6.0
+    - libltdl {{ libltdl }}
     # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_12/configure.ac#L327 -> LIBXML_MIN_VERSION=2.9.13
     - libxml2 {{ libxml2 }}
     # https://github.com/lsh123/xmlsec/blob/xmlsec_1_3_12/configure.ac#L505 -> LIBXSLT_MIN_VERSION=1.1.35
@@ -35,7 +36,7 @@ requirements:
     - openssl {{ openssl }}
   run:
     # Needed to resolve libltdl.so.7 in the dynamic section for libxmlsec1.so
-    - {{ pin_compatible('libtool') }}
+    - {{ pin_compatible('libltdl') }}
 
 test:
   requires:
